@@ -92,3 +92,13 @@ CSS预处理是一种技术，可以很好的提升CSS的编程性，开发效�
 4)通用兄弟选择器：E ~ F,选择所有的兄弟选择元素
 伪类选择器：：link,:visited,:hover,:active
 ```
+9、对行内元素设置margin-top 和margin-bottom是否起作用
+
+```
+不起作用。（需要注意行内元素的替换元素img、input，他们是行内元素，但是可以为其设置宽高，并且margin属性也是对其起作用的，有着类似于Inline-block的行为）
+```
+10、对内联元素设置padding-top和padding-bottom是否会增加它的高度
+
+```
+不会。同上题，要注意行内元素的替换元素，img设置padding-top/bottom是会起作用的
+```
