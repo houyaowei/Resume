@@ -90,7 +90,10 @@ CSS预处理是一种技术，可以很好的提升CSS的编程性，开发效�
 2）子选择器：E > F 只选择E中的子元素
 3）相邻兄弟选择器： E+F ，只选择一个
 4)通用兄弟选择器：E ~ F,选择所有的兄弟选择元素
-伪类选择器：：link,:visited,:hover,:active
+5）伪类选择器：：link,:visited,:hover,:active
+6）属性选择器：a[rel = "external"]
+7）通配符选择器：*
+结构伪类选择器: E:first-child,E:nth-child(n), E:nth-of-type(n)
 ```
 9、对行内元素设置margin-top 和margin-bottom是否起作用
 
@@ -101,4 +104,113 @@ CSS预处理是一种技术，可以很好的提升CSS的编程性，开发效�
 
 ```
 不会。同上题，要注意行内元素的替换元素，img设置padding-top/bottom是会起作用的
+```
+11、媒体查询中only的作用
+
+```
+only 用来定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器。其实only很多时候是用来对那些不支持Media Query 但却支持Media Type 的设备隐藏样式表的。其主要有：支持媒体特性（Media Queries）的设备，正常调用样式，此时就当only 不存在；对于不支持媒体特性(Media Queries)但又支持媒体类型(Media Type)的设备，这样就会不读了样式，因为其先读only 而不是screen；另外不支持Media Qqueries 的浏览器，不论是否支持only，样式都不会被采用
+```
+
+12、格式化上下文
+
+```
+一个块格式化上下文（block formatting context） 是Web页面的可视化CSS渲染出的一部分。它是块级盒布局出现的区域，也是浮动层元素进行交互的区域.
+一个块格式化上下文由以下之一创建:
+根元素或其它包含它的元素
+1)浮动元素 (元素的 float 不是 none)
+2)绝对定位元素 (元素具有 position 为 absolute 或 fixed)
+3)内联块 (元素具有 display: inline-block)
+4)表格单元格 (元素具有 display: table-cell，HTML表格单元格默认属性)
+5)表格标题 (元素具有 display: table-caption, HTML表格标题默认属性)
+6)具有overflow 且值不是 visible 的块元素，
+7)display: flow-root
+8)column-span: all 应当总是会创建一个新的格式化上下文，即便具有 column-span: all 的元素并不被包裹在一个多列容器中。
+```
+13、display:none 和visibilty:hidden的区别
+
+```
+两者都是将某个元素隐藏起来，区别是：display:none会使对象彻底消失，不占据空间；但是visibility:hidden所占的空间还在，留了一块空白区域
+```
+14、XML和JSON的区别
+    m
+```
+1)体积方面：JSON相对于XML来讲，数据的体积小，传递的速度更快些。
+2)交互方面：JSON与JavaScript的交互更加方便，更容易解析处理，更好的数据交互。
+3)描述方面：JSON对数据的描述性比XML较差。
+4)速度方面：JSON的速度要远远快于XML
+```
+15、介绍一下标准的CSS的盒子模型？和低版本IE的盒子模型有什么不同？
+
+```
+标准 w3c 盒子模型的范围包括 margin、border、padding、content，并且 content 部分不包含其他部分。
+IE盒子模型的范围也包括 margin、border、padding、content，和标准 w3c 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。 
+```
+16、flex布局模型
+
+```
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+http://www.houyuewei.cn/?s=flex&submit=%E6%90%9C%E7%B4%A2
+```
+17、line-height和font-size的关系
+
+```
+https://www.w3cplus.com/css/css-font-metrics-line-height-and-vertical-align.html
+
+http://www.zhangxinxu.com/wordpress/2009/11/css%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/
+```
+18、用纯CSS创建一个三角形的原理是什么？
+
+```
+把上、左、右三条边隐藏掉（颜色设为 transparent）
+#demo { width: 0; height: 0; border-width: 20px; border-style: solid; border-color: transparent transparent red transparent;}
+```
+19、一个满屏 品 字布局 如何设计?
+```
+上面的div宽100%， 下面的两个div分别宽50%， 然后将右下的设置为float：right使其不换行即可
+```
+20、经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？
+
+```
+1)png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8
+2)浏览器默认的margin和padding不同。解决方案是使用全局样式统一
+3）IE6双边距bug:块属性标签float后，又有横行的margin情况下，在ie6显示margin比设置的大。 浮动ie产生的双倍距离 #box{ float:left; width:10px; margin:0 0 0 10px;} 这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性
+4）IE下,可以使用 {对象.属性} 的方法来获取自定义属性, 也可以使用getAttribute()获取自定义属性; Firefox下,只能使用getAttribute()获取自定义属性。 解决方法:统一通过getAttribute()获取自定义属性。
+5）IE下,even对象有x,y属性,但是没有pageX,pageY属性; Firefox下,event对象有pageX,pageY属性,但是没有x,y属性
+```
+21、absolute的containing block(容器块)计算方式跟正常流有什么不同？
+
+```
+无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：1、若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；
+2、否则,则由这个祖先元素的 padding box 构成。如果都找不到，则为 initial containing block。
+补充：
+1. static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）2. absolute: 向上找最近的定位为absolute/relative的元素
+3. fixed: 它的containing block一律为根元素(html/body)，根元素也是initial containing block
+```
+22、CSS里的visibility属性有个collapse属性值的作用？在不同浏览器下以后什么区别？
+
+```
+用于表格行、列、列组和行组，隐藏表格的行或列，并且不占用任何空间（与将 display: none 用于表格的行/列上的效果相当）。但是其他行与列的宽和高不会重新计算，行与列的宽高计算依然会将被设为 collapse 的行和列考虑进去。这是用于快速从表格中删除一行或一列，而无需重新计算表格其他元素的宽和高
+
+有些现代浏览器对 visibility: collapse 不支持或是不完全支持。很多时候用在不是表格行与列的元素上时不会正确的将它显示成 visibility: hidden 的效果。
+visibility:collapse 会改变表格的布局，嵌套在其被折叠的单元格中的表格也会同样被折叠，除非专门为此嵌套表格指定 visibility: visible 。
+```
+23、position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样
+
+```
+参考：http://www.cnblogs.com/jackyWHJ/p/3756087.html
+```
+24、对BFC规范(块级格式化上下文：block formatting context)的理解？
+
+```
+（W3C CSS 2.1 规范中的一个概念,它是一个独立容器，决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。） 一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。 不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。
+```
+25、css定义的权重
+
+```
+标签的权重为1，class的权重为10，id的权重为100
+```
+26、浏览器是怎样解析CSS选择器的？
+
+```
+参考：http://www.cnblogs.com/zhaodongyu/p/3341080.html
 ```
