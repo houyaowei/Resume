@@ -154,9 +154,12 @@ http://www.houyuewei.cn/?s=flex&submit=%E6%90%9C%E7%B4%A2
 17、line-height和font-size的关系
 
 ```
+参考：
 https://www.w3cplus.com/css/css-font-metrics-line-height-and-vertical-align.html
 
 http://www.zhangxinxu.com/wordpress/2009/11/css%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/
+
+http://www.studyofnet.com/news/273.html
 ```
 18、用纯CSS创建一个三角形的原理是什么？
 
@@ -213,4 +216,28 @@ visibility:collapse 会改变表格的布局，嵌套在其被折叠的单元格
 
 ```
 参考：http://www.cnblogs.com/zhaodongyu/p/3341080.html
+```
+27、::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用
+
+```
+单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。
+伪类用于向某些选择器添加特殊的效果，与选择器相关。
+伪元素用于将特殊的效果添加到某些选择器，添加一些特殊的效果
+
+伪类的效果可以通过添加一个实际的类来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到，这也是为什么他们一个称为伪类，一个称为伪元素的原因。
+```
+28、如何修改chrome记住密码后自动填充表单的黄色背景 ？
+
+```
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: rgb(250, 255, 189); /* #FAFFBD; */
+  background-image: none;
+  color: rgb(0, 0, 0);
+}
+```
+29、你对line-height是如何理解的？
+
+```
+参考：http://www.zhangxinxu.com/wordpress/2009/11/css%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/
+
 ```
