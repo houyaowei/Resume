@@ -241,3 +241,130 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 参考：http://www.zhangxinxu.com/wordpress/2009/11/css%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/
 
 ```
+30、如果需要手动写动画，你认为最小时间间隔是多久，为什么？
+
+```
+多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms
+```
+31、什么是Cookie 隔离？
+
+```
+如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常
+浪费流量，所以不如隔离开。
+因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有
+cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。
+同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，
+提高了webserver的http请求的解析速度。
+
+```
+32、cookie和本地存储的区别：
+
+```
+1) cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
+2) cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+3) 数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
+4) 作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。Web Storage 支持事件通知机制，可以将数据更新的通知发送给监听者。Web Storage 的 api 接口使用更方便。
+```
+33、什么是CSS 预处理器 / 后处理器
+
+```
+- 预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有
+  层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。
+- 后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前
+  最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。
+```
+34、CSS hack
+
+```
+https://www.sitepoint.com/what-is-the-definition-of-a-css-hack/
+
+http://www.cnblogs.com/PeunZhang/archive/2012/04/09/2437563.html
+```
+35、css透明问题
+
+```
+参考：
+http://www.cnblogs.com/PeunZhang/p/4089894.html
+```
+
+36、div+css的布局较table布局有什么优点？
+
+```
+改版的时候更方便 只要改css文件。
+页面加载速度更快、结构化清晰、页面显示简洁。
+表现与结构相分离。
+易于优化（seo）搜索引擎更友好
+```
+37、webP图片
+
+```
+https://isux.tencent.com/introduction-of-webp.html
+```
+38、知道什么是微格式吗？具体有几种，谈谈理解。在前端构建中应该考虑微格式吗？
+
+```
+微格式（Microformats）是一种让机器可读的语义化XHTML词汇的集合，是结构化数据的开放标准。是为特殊应用而制定的特殊格式。微格式目前的应用并不广泛，大多数的网站都是采用自己定义的格式来书写.微格式其实并不是浏览器或者HTML的某种标准，而是很多人进行起草创建的。它帮助我们更有效的管理前端代码，不仅让人能够读取其中的信息，也能让机器理解（典型的比如爬虫)
+
+分类：vcard,hcard, hcalender
+http://microformats.org/code/hcard/creator
+
+优点：将智能数据添加到网页上，让网站内容在搜索引擎结果界面可以显示额外的提示。
+```
+39、一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验
+
+```
+1)图片懒加载，在页面上的未可视区域可以添加一个滚动条事件，判断图片位置与浏览器顶端的距离与页面的距离，如果前者小于后者，优先加载。
+2)如果为幻灯片、相册等，可以使用图片预加载技术，将当前展示图片的前一张和后一张优先下载。
+如果图片为css图片，可以使用CSSsprite，SVGsprite，Iconfont、Base64等技术。
+3)如果图片过大，可以使用特殊编码的图片，加载时会先加载一张压缩的特别厉害的缩略图，以提高用户体验。
+4)如果图片展示区域小于图片的真实大小，则因在服务器端根据业务需要先行进行图片压缩，图片压缩后大小与展示一致。
+```
+40、你如何理解HTML结构的语义化？
+
+```
+1)去掉或样式丢失的时候能让页面呈现清晰的结构
+2)屏幕阅读器会完全根据你的标记来“读”你的网页.
+3)搜索引擎的爬虫也依赖于标记来确定上下文和各个关键字的权重
+4)便于团队开发和维护
+
+```
+41、行内元素的padding和margin可设置吗？
+
+```
+宽度(width)、高度(height)、内边距的top/bottom(padding-top/padding-bottom)和外边距的top/bottom(margin-top/margin-bottom)都不可改变, 
+padding和margin的left和right是可以设置的，就是里面文字或图片的大小
+```
+42、rgba()和opacity的透明效果有什么不同？
+
+```
+rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于元素，以及元素内的所有内容的透明度，
+而rgba()只作用于元素的颜色或其背景色。（设置rgba透明的元素的子元素不会继承透明效果！）
+```
+43、如何垂直居中一个浮动元素？
+
+```
+// 方法一：已知元素的高宽
+#ele{
+    background-color:#6699FF;
+    width:200px;
+    height:200px;
+    position: absolute;        //父元素需要绝对定位
+    top: 50%;
+    left: 50%;
+    margin-top:-100px ;   //二分之一的height，width
+    margin-left: -100px;
+ }
+ 
+//方法二:未知元素的高宽
+  #ele{
+    width: 200px;
+    height: 200px;
+    background-color: #6699FF;
+    margin:auto;
+    position: absolute;        //父元素需要绝对定位
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+```
