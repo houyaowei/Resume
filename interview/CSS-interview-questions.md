@@ -322,10 +322,11 @@ http://microformats.org/code/hcard/creator
 40、你如何理解HTML结构的语义化？
 
 ```
-1)去掉或样式丢失的时候能让页面呈现清晰的结构
-2)屏幕阅读器会完全根据你的标记来“读”你的网页.
-3)搜索引擎的爬虫也依赖于标记来确定上下文和各个关键字的权重
-4)便于团队开发和维护
+  1）用正确的标签做正确的事情。
+  2）html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+  3）即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;
+  4）搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+  5）使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
 
 ```
 41、行内元素的padding和margin可设置吗？
@@ -343,7 +344,6 @@ rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于
 43、如何垂直居中一个浮动元素？
 
 ```
-// 方法一：已知元素的高宽
 #ele{
     background-color:#6699FF;
     width:200px;
@@ -354,17 +354,74 @@ rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于
     margin-top:-100px ;   //二分之一的height，width
     margin-left: -100px;
  }
- 
-//方法二:未知元素的高宽
-  #ele{
-    width: 200px;
-    height: 200px;
-    background-color: #6699FF;
-    margin:auto;
-    position: absolute;        //父元素需要绝对定位
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-  }
+
+```
+44、iframe有那些缺点？怎么解决？
+
+```
+1)frame会阻塞主页面的Onload事件；
+2)搜索引擎的检索程序无法解读这种页面
+3)iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载
+
+解决办法：使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript
+动态给iframe添加src属性值，这样可以绕开以上问题。
+```
+45、HTML5的离线储存怎么使用，工作原理能不能解释一下？
+
+```
+原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示
+
+ 如何使用：
+  1、页面头部像下面一样加入一个manifest的属性；
+  2、在cache.manifest文件的编写离线存储的资源；
+  	CACHE MANIFEST
+  	#v0.11
+  	CACHE:
+  	js/app.js
+  	css/style.css
+  	NETWORK:
+  	resourse/logo.png
+  	FALLBACK:
+  	/ /offline.html
+  3、在离线状态时，操作window.applicationCache进行需求实现
+
+```
+46、如何实现浏览器内多个标签页之间的通信?
+
+```
+  WebSocket: https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
+  SharedWorker: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
+  
+  也可以调用localstorge、cookies等本地存储方式；
+  localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，
+  我们通过监听事件，控制它的值来进行页面信息通信；
+  注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；
+```
+47、webSocket如何兼容低浏览器
+
+```
+  Adobe Flash Socket:
+  ActiveX HTMLFile (IE) 、
+  基于 multipart 编码发送 XHR 、
+  基于长轮询的 XHR
+  
+  参考链接：
+  http://www.cnblogs.com/hoojo/p/longPolling_comet_jquery_iframe_ajax.html
+```
+48、页面可见性（Page Visibility API） 可以有哪些用途？
+
+```
+  通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;
+  在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；
+  
+  参考：
+  https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API
+  https://www.w3.org/TR/page-visibility/
+  http://www.zhangxinxu.com/wordpress/2012/11/page-visibility-api-introduction-extend/
+  https://dev.opera.com/blog/page-visibility-api-support-in-opera-12-10/
+```
+49、实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。
+
+```
+  <div style="height:1px;overflow:hidden;background:red"></div>
 ```
